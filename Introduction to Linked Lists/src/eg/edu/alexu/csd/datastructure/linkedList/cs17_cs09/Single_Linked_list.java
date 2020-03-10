@@ -1,6 +1,6 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs17_cs09;
 
-public class Linked_list implements ILinkedList {
+public class Single_Linked_list implements ILinkedList {
 
 	@Override
 	public void add(int index, Object element) {
