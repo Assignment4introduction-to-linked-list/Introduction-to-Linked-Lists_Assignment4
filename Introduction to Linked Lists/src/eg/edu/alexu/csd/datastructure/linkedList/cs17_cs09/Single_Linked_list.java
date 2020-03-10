@@ -113,8 +113,26 @@ public class Single_Linked_list implements ILinkedList {
 
 	@Override
 	public ILinkedList sublist(int fromIndex, int toIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new RuntimeException("the list is empty");
+		}else {
+			if (toIndex>size-1) {
+				throw new RuntimeException("the border of the list you need is bigger than the base list");
+			}else {
+				Single_Linked_list sublist = new Single_Linked_list();
+				sublist.size=toIndex-fromIndex+1;
+				Node temp=head;
+				for (int i=0;i<size;i++) {
+					if (i==fromIndex) {
+						sublist.head=temp;
+					}else if(i==fromIndex) {
+						sublist.tail=temp;
+					}
+					temp=temp.next;
+				}
+				return sublist;
+			}
+		}
 	}
 
 	@Override
