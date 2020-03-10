@@ -28,6 +28,7 @@ public class Single_Linked_list implements ILinkedList {
 		}
 		Nnew.next=position.next;
 		position.next=Nnew;
+		size++;
 	}
 
 	@Override
@@ -118,8 +119,28 @@ public class Single_Linked_list implements ILinkedList {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		if (isEmpty()) {
+			return false;
+		}else {
+			boolean test=false;
+			Node temp = head;
+			for (int i=0;i<size;i++) {
+				if (temp.element==o) {
+					test=true;
+					break;
+				}
+				temp=temp.next;
+			}
+			return test;
+		}
+	}
+	
+	public void print() { //this function for testing the code
+		Node temp=head;
+		for (int i=0;i<size;i++) {
+			System.out.println(temp.element);
+			temp=temp.next;
+		}
 	}
 
 }
