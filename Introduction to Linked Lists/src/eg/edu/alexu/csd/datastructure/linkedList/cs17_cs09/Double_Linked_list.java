@@ -2,6 +2,17 @@ package eg.edu.alexu.csd.datastructure.linkedList.cs17_cs09;
 
 public class Double_Linked_list implements ILinkedList{
 
+	
+	class Node{
+		Object element;
+		Node next,last;
+	}
+	int size;
+	Node head,tail;
+	Double_Linked_list(){
+		size=0;
+		head=tail=null;
+	}
 	@Override
 	public void add(int index, Object element) {
 		// TODO Auto-generated method stub
@@ -34,8 +45,7 @@ public class Double_Linked_list implements ILinkedList{
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size==0;
 	}
 
 	@Override
@@ -46,8 +56,7 @@ public class Double_Linked_list implements ILinkedList{
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override

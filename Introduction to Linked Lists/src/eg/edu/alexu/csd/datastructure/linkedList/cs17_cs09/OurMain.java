@@ -24,7 +24,7 @@ public class OurMain {
     	l.clear();
     	l.print();*/
     	Single_Linked_list sub=new Single_Linked_list ();
-    	sub=(Single_Linked_list) l.sublist(1, 4);
+    	sub=(Single_Linked_list) l.sublist(1,4);
     	sub.print();
     }
 }
