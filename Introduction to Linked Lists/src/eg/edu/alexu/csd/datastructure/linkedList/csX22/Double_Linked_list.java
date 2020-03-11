@@ -1,4 +1,4 @@
-package eg.edu.alexu.csd.datastructure.linkedList.cs17_cs09;
+package eg.edu.alexu.csd.datastructure.linkedList.csX22;
 
 public class Double_Linked_list implements ILinkedList{
 
