@@ -81,7 +81,29 @@ public class Double_Linked_list implements ILinkedList{
 
 	@Override
 	public void remove(int index) {
-		// TODO Auto-generated method stub
+		if (isEmpty()) {
+			throw new RuntimeException("the list is empty can't remove from it");
+		}else {
+			if (index==0) {
+				head=head.next;
+			}else if (index==size-1) {
+				Node N1=head;
+				while(true) {
+					if (N1.next==tail)break;
+				}
+				tail=N1;
+				tail.next=null;
+			}else {
+				Node N1=head,N2=head.next;
+				for (int i=0;i<index-1;i++) {
+					N1=N1.next;
+					N2=N2.next;
+				}
+				N2=N2.next;
+				N1.next=N2;
+			}
+			size--;
+		}
 		
 	}
 
