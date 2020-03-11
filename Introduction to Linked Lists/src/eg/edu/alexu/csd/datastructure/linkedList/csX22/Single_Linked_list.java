@@ -7,7 +7,7 @@ public class Single_Linked_list implements ILinkedList {
 		Object element;
 		Node next;
 	};
-	private Node head,tail;
+	Node head,tail;
 	private int size;
 	Single_Linked_list(){
 		head=tail=null;
