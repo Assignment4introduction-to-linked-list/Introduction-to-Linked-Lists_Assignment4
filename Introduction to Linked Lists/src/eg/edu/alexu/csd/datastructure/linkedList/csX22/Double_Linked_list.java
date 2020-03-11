@@ -1,33 +1,34 @@
-package eg.edu.alexu.csd.datastructure.linkedList.cs17_cs09;
+package eg.edu.alexu.csd.datastructure.linkedList.csX22;
 
-public class Single_Linked_list implements ILinkedList {
+public class Double_Linked_list implements ILinkedList{
+
 	
-	
-	class Node {
+	class Node{
 		Object element;
-		Node next;
-	};
-	Node head,tail;
-	int size;
-	Single_Linked_list(){
+		Node next,previous;
+	}
+	private int size;
+	private Node head,tail;
+	Double_Linked_list(){
+		size=0;
 		head=tail=null;
-		size = 0;
-	};
-
+	}
 	@Override
 	public void add(int index, Object element) {
-		Node Nnew =new Node();
+		Node Nnew=new Node();
 		Nnew.element=element;
-		Node position;
-		position = head;
+		Node pos=head;
 		if (index==size-1) {
 			add(element);
+		}else {
+			for (int i=0;i<index-1;i++) {
+				pos=pos.next;
+			}
+			Nnew.next=pos.next;
+			pos.next.previous=Nnew;
+			pos.next=Nnew;
+			Nnew.previous=pos;
 		}
-		for (int i=0;i<index-1;i++) {
-			position=position.next;
-		}
-		Nnew.next=position.next;
-		position.next=Nnew;
 		size++;
 	}
 
@@ -36,25 +37,25 @@ public class Single_Linked_list implements ILinkedList {
 		Node Nnew = new Node();
 		Nnew.element=element;
 		if (isEmpty()) {
+			Nnew.previous=null;
+			Nnew.next=null;
 			head=tail=Nnew;
-			Nnew.next=null;
 		}else {
-			
-			tail.next=Nnew;
-			tail=Nnew;
 			Nnew.next=null;
+			tail.next=Nnew;
+			Nnew.previous=tail;
+			tail=Nnew;
 		}
-		size++;
+		size++;	
 	}
 
 	@Override
 	public Object get(int index) {
-		Node Temp;
-		Temp=head;
+		Node temp=head;
 		for (int i=0;i<index;i++) {
-			Temp=Temp.next;
+			temp=temp.next;
 		}
-		return Temp.element;
+		return temp.element;
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class Single_Linked_list implements ILinkedList {
 
 	@Override
 	public boolean isEmpty() {
-		return size == 0;
+		return size==0;
 	}
 
 	@Override
@@ -119,9 +120,9 @@ public class Single_Linked_list implements ILinkedList {
 			if (toIndex>size-1) {
 				throw new RuntimeException("the border of the list you need is bigger than the base list");
 			}else {
-				Single_Linked_list sublist = new Single_Linked_list();
+				Double_Linked_list sublist = new Double_Linked_list();
 				sublist.size=toIndex-fromIndex+1;
-				Node temp=head;
+				Node temp = head;
 				for (int i=0;i<size;i++) {
 					if (i==fromIndex) {
 						sublist.head=temp;
@@ -153,6 +154,7 @@ public class Single_Linked_list implements ILinkedList {
 		}
 	}
 	
+	
 	public void print() { //this function for testing the code
 		Node temp=head;
 		for (int i=0;i<size;i++) {
@@ -160,5 +162,6 @@ public class Single_Linked_list implements ILinkedList {
 			temp=temp.next;
 		}
 	}
+
 
 }
