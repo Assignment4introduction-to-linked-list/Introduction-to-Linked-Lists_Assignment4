@@ -21,11 +21,10 @@ public class OurMain {
     	Object x= l.get(3);
     	System.out.println("\n\n"+x);
     	System.out.println(l.contains(10));
-    	l.clear();
-    	l.print();
-    	/*
-    	Single_Linked_list sub=new Single_Linked_list ();
-    	sub=(Single_Linked_list) l.sublist(1,4);
-    	sub.print();*/
+    	//l.clear();
+    	//l.print();
+    	Double_Linked_list sub=new Double_Linked_list ();
+    	sub=(Double_Linked_list) l.sublist(1,2);
+    	sub.print();
     }
 }
