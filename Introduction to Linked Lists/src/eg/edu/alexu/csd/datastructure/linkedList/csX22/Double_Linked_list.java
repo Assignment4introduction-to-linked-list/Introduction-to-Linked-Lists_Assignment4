@@ -7,8 +7,8 @@ public class Double_Linked_list implements ILinkedList{
 		Object element;
 		Node next,last;
 	}
-	int size;
-	Node head,tail;
+	private int size;
+	private Node head,tail;
 	Double_Linked_list(){
 		size=0;
 		head=tail=null;
