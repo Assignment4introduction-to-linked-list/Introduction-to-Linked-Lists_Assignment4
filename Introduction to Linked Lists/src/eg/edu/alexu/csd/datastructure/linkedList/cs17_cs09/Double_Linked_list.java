@@ -15,32 +15,63 @@ public class Double_Linked_list implements ILinkedList{
 	}
 	@Override
 	public void add(int index, Object element) {
-		// TODO Auto-generated method stub
-		
+		Node Nnew=new Node();
+		Nnew.element=element;
+		Node pos=head;
+		if (index==size-1) {
+			add(element);
+		}else {
+			for (int i=0;i<index-1;i++) {
+				pos=pos.next;
+			}
+			Nnew.next=pos.next;
+			pos.next.last=Nnew;
+			pos.next=Nnew;
+			Nnew.last=pos;
+		}
+		size++;
 	}
 
 	@Override
 	public void add(Object element) {
-		// TODO Auto-generated method stub
-		
+		Node Nnew = new Node();
+		Nnew.element=element;
+		if (isEmpty()) {
+			Nnew.last=null;
+			Nnew.next=null;
+			head=tail=Nnew;
+		}else {
+			Nnew.next=null;
+			tail.next=Nnew;
+			Nnew.last=tail;
+			tail=Nnew;
+		}
+		size++;	
 	}
 
 	@Override
 	public Object get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		Node temp=head;
+		for (int i=0;i<index;i++) {
+			temp=temp.next;
+		}
+		return temp.element;
 	}
 
 	@Override
 	public void set(int index, Object element) {
-		// TODO Auto-generated method stub
-		
+		Node Temp;
+		Temp=head;
+		for (int i=0;i<index;i++) {
+			Temp=Temp.next;
+		}
+		Temp.element=element;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		head=tail=null;
+		size=0;
 	}
 
 	@Override
@@ -67,8 +98,30 @@ public class Double_Linked_list implements ILinkedList{
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		if (isEmpty()) {
+			return false;
+		}else {
+			boolean test=false;
+			Node temp = head;
+			for (int i=0;i<size;i++) {
+				if (temp.element==o) {
+					test=true;
+					break;
+				}
+				temp=temp.next;
+			}
+			return test;
+		}
 	}
+	
+	
+	public void print() { //this function for testing the code
+		Node temp=head;
+		for (int i=0;i<size;i++) {
+			System.out.println(temp.element);
+			temp=temp.next;
+		}
+	}
+
 
 }

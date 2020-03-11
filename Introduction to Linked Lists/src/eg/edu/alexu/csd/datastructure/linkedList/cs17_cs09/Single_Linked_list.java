@@ -22,12 +22,13 @@ public class Single_Linked_list implements ILinkedList {
 		position = head;
 		if (index==size-1) {
 			add(element);
+		}else {
+			for (int i=0;i<index-1;i++) {
+				position=position.next;
+			}
+			Nnew.next=position.next;
+			position.next=Nnew;
 		}
-		for (int i=0;i<index-1;i++) {
-			position=position.next;
-		}
-		Nnew.next=position.next;
-		position.next=Nnew;
 		size++;
 	}
 
