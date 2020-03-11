@@ -4,7 +4,7 @@ public class PolynomialSolver implements IPolynomialSolver{
 
 	@Override
 	public void setPolynomial(char poly, int[][] terms) {
-		// TODO Auto-generated method stub
+		// test test
 		
 	}
 
