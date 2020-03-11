@@ -15,7 +15,7 @@ public class OurMain {
     	l.add('b');
     	l.add("ahmed");
     	l.add(2,"car");
-    	//l.remove(0);
+    	l.remove(0);
     	l.set(2, "khaled");
     	l.print();
     	Object x= l.get(3);
