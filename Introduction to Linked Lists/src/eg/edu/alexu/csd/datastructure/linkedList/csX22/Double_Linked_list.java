@@ -5,7 +5,7 @@ public class Double_Linked_list implements ILinkedList{
 	
 	class Node{
 		Object element;
-		Node next,last;
+		Node next,previous;
 	}
 	private int size;
 	private Node head,tail;
@@ -25,9 +25,9 @@ public class Double_Linked_list implements ILinkedList{
 				pos=pos.next;
 			}
 			Nnew.next=pos.next;
-			pos.next.last=Nnew;
+			pos.next.previous=Nnew;
 			pos.next=Nnew;
-			Nnew.last=pos;
+			Nnew.previous=pos;
 		}
 		size++;
 	}
@@ -37,13 +37,13 @@ public class Double_Linked_list implements ILinkedList{
 		Node Nnew = new Node();
 		Nnew.element=element;
 		if (isEmpty()) {
-			Nnew.last=null;
+			Nnew.previous=null;
 			Nnew.next=null;
 			head=tail=Nnew;
 		}else {
 			Nnew.next=null;
 			tail.next=Nnew;
-			Nnew.last=tail;
+			Nnew.previous=tail;
 			tail=Nnew;
 		}
 		size++;	
