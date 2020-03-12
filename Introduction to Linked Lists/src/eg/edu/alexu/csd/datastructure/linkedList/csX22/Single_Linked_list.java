@@ -50,12 +50,14 @@ public class Single_Linked_list implements ILinkedList {
 
 	@Override
 	public Object get(int index) {
-		Node Temp;
-		Temp=head;
-		for (int i=0;i<index;i++) {
-			Temp=Temp.next;
-		}
-		return Temp.element;
+            if(index>=size)
+                return null;
+            Node Temp;
+            Temp=head;
+            for (int i=0;i<index;i++) {
+                    Temp=Temp.next;
+            }
+            return Temp.element; 
 	}
 
 	@Override
