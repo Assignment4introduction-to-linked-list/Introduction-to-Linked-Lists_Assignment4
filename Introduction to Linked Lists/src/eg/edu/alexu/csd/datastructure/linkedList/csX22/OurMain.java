@@ -26,5 +26,12 @@ public class OurMain {
     	Double_Linked_list sub=new Double_Linked_list ();
     	sub=(Double_Linked_list) l.sublist(1,2);
     	sub.print();
+        PolynomialSolver poly = new PolynomialSolver();
+        int[][] ab = {{3,3},{2,0},{1,2},{1,1}};
+        poly.setPolynomial('a', ab);
+        poly.print('a');
+        
+
+
     }
 }
