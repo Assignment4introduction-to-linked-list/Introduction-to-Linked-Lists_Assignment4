@@ -1,4 +1,4 @@
-package eg.edu.alexu.csd.datastructure.linkedList.cs17_cs09;
+package eg.edu.alexu.csd.datastructure.linkedList.csX22;
 
 public class Single_Linked_list implements ILinkedList {
 	
@@ -7,8 +7,8 @@ public class Single_Linked_list implements ILinkedList {
 		Object element;
 		Node next;
 	};
-	Node head,tail;
-	int size;
+	private Node head,tail;
+	private int size;
 	Single_Linked_list(){
 		head=tail=null;
 		size = 0;
@@ -22,12 +22,13 @@ public class Single_Linked_list implements ILinkedList {
 		position = head;
 		if (index==size-1) {
 			add(element);
+		}else {
+			for (int i=0;i<index-1;i++) {
+				position=position.next;
+			}
+			Nnew.next=position.next;
+			position.next=Nnew;
 		}
-		for (int i=0;i<index-1;i++) {
-			position=position.next;
-		}
-		Nnew.next=position.next;
-		position.next=Nnew;
 		size++;
 	}
 
@@ -49,12 +50,14 @@ public class Single_Linked_list implements ILinkedList {
 
 	@Override
 	public Object get(int index) {
-		Node Temp;
-		Temp=head;
-		for (int i=0;i<index;i++) {
-			Temp=Temp.next;
-		}
-		return Temp.element;
+            if(index>=size)
+                return null;
+            Node Temp;
+            Temp=head;
+            for (int i=0;i<index;i++) {
+                    Temp=Temp.next;
+            }
+            return Temp.element; 
 	}
 
 	@Override
