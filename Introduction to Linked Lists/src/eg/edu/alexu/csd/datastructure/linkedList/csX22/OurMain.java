@@ -27,11 +27,18 @@ public class OurMain {
     	sub=(Double_Linked_list) l.sublist(1,2);
     	sub.print();
         PolynomialSolver poly = new PolynomialSolver();
-        int[][] ab = {{3,3},{2,0},{1,2},{1,1}};
+        int[][] ab = {{3,3},{2,3},{2,2},{1,1},{-2,2}};
+        int[][] bd = {{3,3},{2,0},{+2,2},{-1,1}};
         poly.setPolynomial('a', ab);
-        poly.print('a');
-        
-
-
+        poly.setPolynomial('b', bd);
+        System.out.println("1st : "+poly.print('a'));
+        System.out.println("2nd : "+poly.print('b'));
+        poly.setPolynomial('c',poly.add('a', 'b'));
+        System.out.println("Sum : "+poly.print('c'));
+        poly.setPolynomial('d', poly.subtract('a', 'b'));
+        System.out.println("Sub : "+poly.print('d'));
+        poly.setPolynomial('m', poly.multiply('a', 'b'));
+        System.out.println("Mul : "+poly.print('m'));
+        System.out.println("Value of 1st when x = 2.25 is "+poly.evaluatePolynomial('a', 2.25F));
     }
 }
