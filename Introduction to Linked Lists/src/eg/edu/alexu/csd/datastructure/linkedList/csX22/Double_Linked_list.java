@@ -163,5 +163,19 @@ public class Double_Linked_list implements ILinkedList{
 		}
 	}
 
-
+	public Object[] listToArr(Double_Linked_list list) {
+		Object [] arr = new Object [list.size()];
+		for (int i=0;i<list.size();i++) {
+			arr[i]=list.get(i);
+		}
+		return arr;
+	}
+	
+	public Double_Linked_list arrToList (Object[] arr) {
+		Double_Linked_list list = new Double_Linked_list();
+		for (int i=0;i<arr.length;i++) {
+			list.add(arr[i]);
+		}
+		return list;
+	}
 }
