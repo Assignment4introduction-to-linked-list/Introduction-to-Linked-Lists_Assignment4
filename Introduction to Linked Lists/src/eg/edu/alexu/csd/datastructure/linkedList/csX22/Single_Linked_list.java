@@ -165,7 +165,7 @@ public class Single_Linked_list implements ILinkedList {
 	}
 	
 	public Object[] listToArr(Single_Linked_list list) {
-		Object [] arr = new Object [list.size()];
+		Object[] arr = new Object [list.size()];
 		for (int i=0;i<list.size();i++) {
 			arr[i]=list.get(i);
 		}
