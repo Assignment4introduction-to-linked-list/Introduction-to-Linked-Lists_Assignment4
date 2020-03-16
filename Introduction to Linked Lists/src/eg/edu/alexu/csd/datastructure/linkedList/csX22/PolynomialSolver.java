@@ -180,10 +180,14 @@ public class PolynomialSolver implements IPolynomialSolver{
     }
     private int getPolyIndex(char poly)
     {
-        int cur = 0;
-        while(cur<P.length && P[cur].name!=poly)
-            cur++;
-        return cur;
+        if(isExist(poly)){
+            int cur = 0;
+            while(cur<P.length && P[cur].name!=poly)
+                cur++;
+            return cur;
+        }
+        else
+            throw new RuntimeException("Polynomial not found");
     }
     private int[] getValue(char poly, int index)
     {
@@ -191,6 +195,12 @@ public class PolynomialSolver implements IPolynomialSolver{
         int[] values = {((int[])(P[cur].equation.get(index)))[0],
             ((int[])(P[cur].equation.get(index)))[1]};
         return values;
+    }
+    private boolean isExist(char poly){
+        for (Polyn P1 : P)
+            if (P1.name == poly)
+                return true;
+        return false;
     }
 	
 }
