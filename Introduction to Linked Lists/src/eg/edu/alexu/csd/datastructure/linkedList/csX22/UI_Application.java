@@ -45,20 +45,25 @@ public class UI_Application {
 						}
 					}
 					p.setPolynomial(Vname1,Arrays.copyOf(CoEx, x+1));
-					System.out.println("Polynomial "+Vname1+" is set\n====================================================================");
+					System.out.println("Polynomial "+Vname1+
+							" is set\n====================================================================");
 					break;
 					}
 				case 2:{
 					System.out.println("Insert the variable name: A, B, C or R ");
 					Vname1 = s.next().charAt(0);
-					System.out.println("Value in"+Vname1+":"+p.print(Vname1)+"\n====================================================================");break;
+					System.out.println("Value in"+Vname1+":"+p.print(Vname1)+
+							"\n====================================================================");
+					break;
 					}
 				case 3 :{System.out.println("Insert the first variable name: A, B, C or R ");
 					Vname1=s.next().charAt(0);
 					System.out.println("Insert the Second variable name: A, B, C or R ");
 					Vname2=s.next().charAt(0);
 					p.setPolynomial('R',p.add(Vname1, Vname2));
-					System.out.println("the result of adding :"+p.print('R')+"\n====================================================================");break;
+					System.out.println("the result of adding :"+p.print('R')+
+							"\n====================================================================");
+					break;
 					}
 				case 4 :{
 					System.out.println("Insert the first variable name: A, B, C or R ");
@@ -66,7 +71,9 @@ public class UI_Application {
 					System.out.println("Insert the Second variable name: A, B, C or R ");
 					Vname2=s.next().charAt(0);
 					p.setPolynomial('R',p.subtract(Vname1, Vname2));
-					System.out.println("the result of Subtracting :"+p.print('R')+"\n====================================================================");break;
+					System.out.println("the result of Subtracting :"+p.print('R')+
+							"\n====================================================================");
+					break;
 					}
 				case 5 :{
 					System.out.println("Insert the first variable name: A, B, C or R ");
@@ -74,7 +81,9 @@ public class UI_Application {
 					System.out.println("Insert the Second variable name: A, B, C or R ");
 					Vname2=s.next().charAt(0);
 					p.setPolynomial('R',p.multiply(Vname1, Vname2));
-					System.out.println("the result of Multiplying :"+p.print('R')+"\n====================================================================");break;
+					System.out.println("the result of Multiplying :"+p.print('R')+
+							"\n====================================================================");
+					break;
 					}
 				case 6:{
 					System.out.println("Insert the variable name: A, B, C or R ");
