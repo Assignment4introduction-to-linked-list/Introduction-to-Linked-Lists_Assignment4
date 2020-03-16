@@ -9,11 +9,10 @@ public class PolynomialSolver implements IPolynomialSolver{
         Single_Linked_list equation = new Single_Linked_list();
     }
     Polyn[] P = new Polyn[10];
-    private int nOfPoly = 0;
 
     @Override
     public void setPolynomial(char poly, int[][] terms) { 
-        // bubble sort and adding same exponent
+        // bubble sort
         int rcount = 0;
         int maxnInt = -2147483648;
         for (int i = 0; i < terms.length-1; i++) 
@@ -24,19 +23,29 @@ public class PolynomialSolver implements IPolynomialSolver{
                     terms[j] = terms[j+1]; 
                     terms[j+1] = temp; 
                 }
+                /* adding terms with same exponent
+                   move unwanted terms to the last of the array */
                 else if(terms[j][1] == terms[j+1][1]){
                     terms[j][0] += terms[j+1][0];
                     terms[j+1][1] = maxnInt++;
                     rcount++; j--;
                 }
-        // make the polynomial
-        P[nOfPoly] = new Polyn();
-        P[nOfPoly].name = poly;
+/////////////////////// make the polynomial ///////////////////////
+        // search for empty place in the array to set a new polynomial
+        int temp = -1;
+        for(int i=0; i<P.length; i++)
+            if(P[i]==null){
+                temp = i;
+                break;
+            }
+        if(temp==-1)
+            throw new RuntimeException("No space for more polynomials, you can remove some");
+        P[temp] = new Polyn();
+        P[temp].name = poly;
         for(int i=terms.length-1 ; i>=rcount; i--){
-            if(terms[i][0]!=0)
-                P[nOfPoly].equation.add(terms[i]);
+            if(terms[i][0]!=0) // check that coefficient not equal to zero
+                P[temp].equation.add(terms[i]);
         }
-        nOfPoly++;
     }
 
     @Override
@@ -44,6 +53,7 @@ public class PolynomialSolver implements IPolynomialSolver{
         StringBuilder equ = new StringBuilder("");
         int cur = this.getPolyIndex(poly);
         for(int i=0 ; i<P[cur].equation.size(); i++){
+            // handling special cases when printing
             boolean coefOne,coefnOne,powerOne,powerZero;
             coefOne = this.getValue(poly,i)[0]==1;
             coefnOne = this.getValue(poly,i)[0]==-1;
@@ -61,7 +71,7 @@ public class PolynomialSolver implements IPolynomialSolver{
                 equ.append(String.format("-X^%d",this.getValue(poly,i)[1]));
             else if(powerOne)
                 equ.append(String.format("%dX",this.getValue(poly,i)[0]));
-            else{
+            else{ // this is the normal case
                 equ.append(String.format("%dX^%d",this.getValue(poly,i)[0],
                ((int[])(P[cur].equation.get(i)))[1]));
             }   
@@ -90,11 +100,14 @@ public class PolynomialSolver implements IPolynomialSolver{
 
     @Override
     public int[][] add(char poly1, char poly2) {
-        int [][] sumArr = new int[100][2]; 
+        
+        int [][] sumArr = new int[100][2];
         int p1 = this.getPolyIndex(poly1);
         int p2 = this.getPolyIndex(poly2);
         int i=0, j=0, counter = 0;
+/////////////////////// adding two sorted polynomials ///////////////////////
         while(i<P[p1].equation.size() && j<P[p2].equation.size()){
+            // if two terms have same exponent
             if(this.getValue(poly1,i)[1]==this.getValue(poly2,j)[1]){
                 if(this.getValue(poly1,i)[0]+this.getValue(poly2,j)[0]!=0){
                     sumArr[counter][1] = this.getValue(poly1, i)[1];
@@ -102,6 +115,7 @@ public class PolynomialSolver implements IPolynomialSolver{
                 }
                 i++; j++;
             }
+            // if one is greater than another
             else if(this.getValue(poly1,i)[1]>this.getValue(poly2,j)[1]){
                 sumArr[counter][1] = this.getValue(poly1, i)[1];
                 sumArr[counter++][0] = this.getValue(poly1, i++)[0];
@@ -111,6 +125,7 @@ public class PolynomialSolver implements IPolynomialSolver{
                 sumArr[counter++][0] = this.getValue(poly2, j++)[0];
             }
         }
+        // adding the remaining elements to the array 
         while(i<P[p1].equation.size()){
             sumArr[counter][1] = this.getValue(poly1, i)[1];
             sumArr[counter++][0] = this.getValue(poly1, i++)[0];
@@ -125,10 +140,13 @@ public class PolynomialSolver implements IPolynomialSolver{
     @Override
     public int[][] subtract(char poly1, char poly2) {
         int cur = this.getPolyIndex(poly2);
+        // make second polynomial negative itself
         for(int i=0; i<P[cur].equation.size(); i++){
             ((int[])(P[cur].equation.get(i)))[0]=-((int[])(P[cur].equation.get(i)))[0];
         }
+        // use add function
         int[][] sub = this.add(poly1, poly2);
+        // return second polynomial to its real values
         for(int i=0; i<P[cur].equation.size(); i++){
             ((int[])(P[cur].equation.get(i)))[0]=-((int[])(P[cur].equation.get(i)))[0];
         }
@@ -141,29 +159,35 @@ public class PolynomialSolver implements IPolynomialSolver{
         int p1 = this.getPolyIndex(poly1);
         int p2 = this.getPolyIndex(poly2);
         int counter=0;
+        // multiply
         for(int i=0; i<P[p1].equation.size(); i++)
             for(int j=0; j<P[p2].equation.size(); j++){
                 mulArr[counter][0] = this.getValue(poly1,i)[0]*this.getValue(poly2,j)[0];
                 mulArr[counter++][1] = this.getValue(poly1,i)[1]+this.getValue(poly2,j)[1];
             }
+        // make a polynomail of the multiplication array to sort and remove elements with zero coefficient
         this.setPolynomial('t', mulArr);
         int mulPoly = this.getPolyIndex('t');
         int[][] fmulArr = new int [1000][2];
         int cou = 0;
+        // make the polynomial array again to return it as the final resault
         for(int i=0; i<P[mulPoly].equation.size(); i++){
             fmulArr[cou][0] = this.getValue('t', i)[0];
             fmulArr[cou++][1] = this.getValue('t', i)[1];
         }
         this.clearPolynomial('t');
-        nOfPoly--;
         return fmulArr;
     }
     private int getPolyIndex(char poly)
     {
-        int cur = 0;
-        while(cur<nOfPoly && P[cur].name!=poly)
-            cur++;
-        return cur;
+        if(isExist(poly)){
+            int cur = 0;
+            while(cur<P.length && P[cur].name!=poly)
+                cur++;
+            return cur;
+        }
+        else
+            throw new RuntimeException("Polynomial not found");
     }
     private int[] getValue(char poly, int index)
     {
@@ -171,6 +195,12 @@ public class PolynomialSolver implements IPolynomialSolver{
         int[] values = {((int[])(P[cur].equation.get(index)))[0],
             ((int[])(P[cur].equation.get(index)))[1]};
         return values;
+    }
+    private boolean isExist(char poly){
+        for (Polyn P1 : P)
+            if (P1.name == poly)
+                return true;
+        return false;
     }
 	
 }
