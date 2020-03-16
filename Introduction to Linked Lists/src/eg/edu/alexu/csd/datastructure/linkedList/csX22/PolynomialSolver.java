@@ -198,7 +198,7 @@ public class PolynomialSolver implements IPolynomialSolver{
     }
     private boolean isExist(char poly){
         for (Polyn P1 : P)
-            if (P1.name == poly)
+            if (P1 != null && P1.name == poly)
                 return true;
         return false;
     }
