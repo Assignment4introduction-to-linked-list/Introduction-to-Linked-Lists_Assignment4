@@ -125,7 +125,7 @@ public class PolynomialSolver implements IPolynomialSolver{
         while(j<P[p2].equation.size()){
             sum.add(new int[]{this.getValue(poly2, j)[0],this.getValue(poly2, j++)[1]});
         }
-        return (int[][])sum.listToArr(sum);
+        return (int[][])sum.listToArr(true);
     }
 
     @Override
@@ -158,9 +158,9 @@ public class PolynomialSolver implements IPolynomialSolver{
         /* throw the multiplcation list to function setPolynomial becouse
         - setPolymial function add terms with same exponent
         - remove terms with zero coefficient */
-        this.setPolynomial('t', (int[][])multiply.listToArr(multiply));
+        this.setPolynomial('t', (int[][])multiply.listToArr(true));
         int mulPoly = this.getPolyIndex('t');
-        int[][] mularray = P[mulPoly].equation.listToArr(P[mulPoly].equation);
+        int[][] mularray = (int[][])P[mulPoly].equation.listToArr(true);
         this.clearPolynomial('t');
         return mularray;
     }
