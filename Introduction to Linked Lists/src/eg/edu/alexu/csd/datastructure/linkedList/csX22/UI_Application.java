@@ -1,6 +1,6 @@
 package eg.edu.alexu.csd.datastructure.linkedList.csX22;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Scanner;
 
 public class UI_Application {
@@ -25,26 +25,28 @@ public class UI_Application {
 					System.out.println("Insert the variable name: A, B or C");
 					Single_Linked_list l=new Single_Linked_list();
 					String str;
-					int x=0;
+					//int x=0;
 					Vname1=s.next().charAt(0);
-					int [][] CoEx =new int[20][2]; 
+					//int [][] CoEx =new int[20][2]; 
 					System.out.println("Insert the polynomial terms in the form:\n(coeff1, exponent1), (coeff2, exponent2), .. ");
-					str=s.next();
-					boolean v = true;
+					s.nextLine();
+					str=s.nextLine();
+					//boolean v = true;
 					for (int i=0;i<str.length();i++) {
-						if (Character.isDigit(str.charAt(i))) {
-							if (v) {
-								CoEx[x][0]=Integer.parseInt(String.valueOf(str.charAt(i)));
+						char check = str.charAt(i);
+						if (Character.isDigit(check)) {
+							l.add(Integer.parseInt(String.valueOf(str.charAt(i))));
+						}
+						else if (check == '-') {
+							i++;
+							check = str.charAt(i);
+							if (Character.isDigit(check)) {
+								l.add(-1*Integer.parseInt(String.valueOf(check)));
 							}
-							else {
-								CoEx[x][1]=Integer.parseInt(String.valueOf(str.charAt(i)));
-								l.add(CoEx[x]);
-								x++;
-							}
-							v=!v;
 						}
 					}
-					p.setPolynomial(Vname1,Arrays.copyOf(CoEx, x+1));
+					
+					p.setPolynomial(Vname1,l.SpecialListToArr(l)/*Arrays.copyOf(CoEx, x+1)*/);
 					System.out.println("Polynomial "+Vname1+
 							" is set\n====================================================================");
 					break;
