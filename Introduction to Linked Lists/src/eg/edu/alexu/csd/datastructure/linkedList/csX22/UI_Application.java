@@ -29,7 +29,8 @@ public class UI_Application {
 					Vname1=s.next().charAt(0);
 					int [][] CoEx =new int[20][2]; 
 					System.out.println("Insert the polynomial terms in the form:\n(coeff1, exponent1), (coeff2, exponent2), .. ");
-					str=s.next();
+					s.nextLine();
+					str=s.nextLine();
 					boolean v = true;
 					for (int i=0;i<str.length();i++) {
 						if (Character.isDigit(str.charAt(i))) {
