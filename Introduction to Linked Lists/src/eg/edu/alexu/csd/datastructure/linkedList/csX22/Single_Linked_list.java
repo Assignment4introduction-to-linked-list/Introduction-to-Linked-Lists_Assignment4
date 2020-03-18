@@ -128,7 +128,7 @@ public class Single_Linked_list implements ILinkedList {
 				for (int i=0;i<size;i++) {
 					if (i==fromIndex) {
 						sublist.head=temp;
-					}else if(i==fromIndex) {
+					}else if(i==toIndex) {
 						sublist.tail=temp;
 					}
 					temp=temp.next;
@@ -163,29 +163,37 @@ public class Single_Linked_list implements ILinkedList {
 			temp=temp.next;
 		}
 	}
-	//modified by (ahmed yousef)
-	public Object[][] listToArr(Single_Linked_list list) {
-		Object[][] arr = new Object [list.size()][];
-		for (int i=0;i<list.size();i++) {
-			arr[i]=(Object[])list.get(i);
+  
+	public Object[] listToArr(boolean IntArr2D) {
+		if(IntArr2D){
+                    int[][] array = new int[size][];
+                    for (int i=0;i<size;i++)
+                        array[i] = (int[])get(i);
+                    return array;
+                } else {
+                }
+                Object[] arr = new Object [size];
+		for (int i=0;i<size;i++) {
+			arr[i] = get(i);
 		}
-		return arr;
+                return arr;
 	}
-	
+  
 	public int[][] SpecialListToArr (Single_Linked_list list){
 		int[][] arr =new int[list.size()/2][2];
 		for (int i =0 ;i<list.size()/2;i++) {
 			arr[i][0]= (int) list.get(2*i);
 			arr[i][1]=(int) list.get(2*i+1);
+                        
 		}
 		return arr;
 	}
 	
-	public Single_Linked_list arrToList (Object[] arr) {
+	public Single_Linked_list arrToList (int[][] arr) {
 		Single_Linked_list list = new Single_Linked_list();
-		for (int i=0;i<arr.length;i++) {
-			list.add(arr[i]);
-		}
+            for (int[] arr1 : arr) {
+                list.add(arr1);
+            }
 		return list;
 	}
 }
