@@ -40,6 +40,5 @@ public class OurMain {
         poly.setPolynomial('m', poly.multiply('a', 'b'));
         System.out.println("Mul : "+poly.print('m'));
         System.out.println("Value of 1st when x = 2.25 is "+poly.evaluatePolynomial('a', 2.25F));
-
     }
 }
