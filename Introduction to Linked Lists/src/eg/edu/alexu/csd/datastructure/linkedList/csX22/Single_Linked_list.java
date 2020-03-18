@@ -172,6 +172,15 @@ public class Single_Linked_list implements ILinkedList {
 		return arr;
 	}
 	
+	public int[][] SpecialListToArr (Single_Linked_list list){
+		int[][] arr =new int[list.size()/2][2];
+		for (int i =0 ;i<list.size()/2;i++) {
+			arr[i][0]= (int) list.get(2*i);
+			arr[i][1]=(int) list.get(2*i+1);
+		}
+		return arr;
+	}
+	
 	public Single_Linked_list arrToList (Object[] arr) {
 		Single_Linked_list list = new Single_Linked_list();
 		for (int i=0;i<arr.length;i++) {
