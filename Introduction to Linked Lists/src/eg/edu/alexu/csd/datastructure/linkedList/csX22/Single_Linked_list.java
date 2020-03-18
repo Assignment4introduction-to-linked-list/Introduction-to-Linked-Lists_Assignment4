@@ -163,11 +163,11 @@ public class Single_Linked_list implements ILinkedList {
 			temp=temp.next;
 		}
 	}
-	
-	public Object[] listToArr(Single_Linked_list list) {
-		Object[] arr = new Object [list.size()];
+	//modified by (ahmed yousef)
+	public Object[][] listToArr(Single_Linked_list list) {
+		Object[][] arr = new Object [list.size()][];
 		for (int i=0;i<list.size();i++) {
-			arr[i]=list.get(i);
+			arr[i]=(Object[])list.get(i);
 		}
 		return arr;
 	}
