@@ -84,20 +84,7 @@ public class Junit_Polynomial_Solver {
         final int[][] expected = {{35,7},{28,5},{35,4},{14,2},{21,1}};
         assertArrayEquals(expected,result);
     }
-    
-    //there is a warning @Mohamed Metwalli .
-    
-/*	    @Test
-    void Setting_test() {
-        PolynomialSolver polynomial = new PolynomialSolver();
-        final int[][] first = {{3,27},{2,10},{5,7}};
-        int[][] result = new int[3][2];
-            
-        int[][] expected = {{3,27},{2,10},{5,7}};
-        assertArrayEquals(expected,result);
-     }
-*/
-    
+                                                                      
     
     @Test
     void Evaluating_test() {
