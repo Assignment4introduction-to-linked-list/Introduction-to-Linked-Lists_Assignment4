@@ -128,7 +128,7 @@ public class Single_Linked_list implements ILinkedList {
 				for (int i=0;i<size;i++) {
 					if (i==fromIndex) {
 						sublist.head=temp;
-					}else if(i==fromIndex) {
+					}else if(i==toIndex) {
 						sublist.tail=temp;
 					}
 					temp=temp.next;
