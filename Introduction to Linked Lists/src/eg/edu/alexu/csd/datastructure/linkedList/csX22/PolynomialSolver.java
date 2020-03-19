@@ -77,6 +77,8 @@ public class PolynomialSolver implements IPolynomialSolver{
                     this.getValue(poly,i+1)[0]>0) 
                 equ.append('+');
         }
+        if(equ.length()==0)
+            return "0";
         return equ.toString();
     }
 
@@ -130,6 +132,8 @@ public class PolynomialSolver implements IPolynomialSolver{
 
     @Override
     public int[][] subtract(char poly1, char poly2) {
+        if(poly1==poly2)
+            return new int[][]{{0,0}};
         int cur = this.getPolyIndex(poly2);
         // make second polynomial negative itself
         for(int i=0; i<P[cur].equation.size(); i++){
