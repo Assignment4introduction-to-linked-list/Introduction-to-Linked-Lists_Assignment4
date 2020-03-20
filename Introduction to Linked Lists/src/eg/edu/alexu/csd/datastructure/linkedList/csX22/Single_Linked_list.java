@@ -20,7 +20,7 @@ public class Single_Linked_list implements ILinkedList {
 		Nnew.element=element;
 		Node position;
 		position = head;
-		if (index==size-1) {
+		if (index==size) { // if the user want to add an element in the last of a list 
 			add(element);
 		}else {
 			for (int i=0;i<index-1;i++) {
@@ -28,8 +28,8 @@ public class Single_Linked_list implements ILinkedList {
 			}
 			Nnew.next=position.next;
 			position.next=Nnew;
+			size++;
 		}
-		size++;
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class Single_Linked_list implements ILinkedList {
 
 	@Override
 	public Object get(int index) {
-            if(index>=size)
+            if(index>=size) //check if the user entered a not found index
                 return null;
             Node Temp;
             Temp=head;
@@ -81,6 +81,8 @@ public class Single_Linked_list implements ILinkedList {
 		return size == 0;
 	}
 
+	//any throw Exception can be deleted and that doesn't affect in our application but we suppose using our classes in a general way
+	
 	@Override
 	public void remove(int index) {
 		if (isEmpty()) {
@@ -128,7 +130,7 @@ public class Single_Linked_list implements ILinkedList {
 				for (int i=0;i<size;i++) {
 					if (i==fromIndex) {
 						sublist.head=temp;
-					}else if(i==fromIndex) {
+					}else if(i==toIndex) {
 						sublist.tail=temp;
 					}
 					temp=temp.next;
@@ -156,13 +158,13 @@ public class Single_Linked_list implements ILinkedList {
 		}
 	}
 	
-	public void print() { //this function for testing the code
+	/*public void print() { //this function for testing the code
 		Node temp=head;
-		for (int i=0;i<size;i++) {
+		while (temp!=null) {
 			System.out.println(temp.element);
 			temp=temp.next;
 		}
-	}
+	}*/
   
 	public Object[] listToArr(boolean IntArr2D) {
 		if(IntArr2D){

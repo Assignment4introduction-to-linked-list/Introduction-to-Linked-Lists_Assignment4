@@ -18,7 +18,7 @@ public class Double_Linked_list implements ILinkedList{
 		Node Nnew=new Node();
 		Nnew.element=element;
 		Node pos=head;
-		if (index==size-1) {
+		if (index==size()) {
 			add(element);
 		}else {
 			for (int i=0;i<index-1;i++) {
@@ -28,8 +28,8 @@ public class Double_Linked_list implements ILinkedList{
 			pos.next.previous=Nnew;
 			pos.next=Nnew;
 			Nnew.previous=pos;
+			size++;
 		}
-		size++;
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class Double_Linked_list implements ILinkedList{
 				for (int i=0;i<size;i++) {
 					if (i==fromIndex) {
 						sublist.head=temp;
-					}else if(i==fromIndex) {
+					}else if(i==toIndex) {
 						sublist.tail=temp;
 					}
 					temp=temp.next;
@@ -155,13 +155,13 @@ public class Double_Linked_list implements ILinkedList{
 	}
 	
 	
-	public void print() { //this function for testing the code
+	/*public void print() { //this function for testing the code
 		Node temp=head;
-		for (int i=0;i<size;i++) {
+		while (temp!=null) {
 			System.out.println(temp.element);
 			temp=temp.next;
 		}
-	}
+	}*/
 
 	public Object[] listToArr(Double_Linked_list list) {
 		Object [] arr = new Object [list.size()];
