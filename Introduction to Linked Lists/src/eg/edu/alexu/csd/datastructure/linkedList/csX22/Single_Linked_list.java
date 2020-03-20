@@ -20,7 +20,7 @@ public class Single_Linked_list implements ILinkedList {
 		Nnew.element=element;
 		Node position;
 		position = head;
-		if (index==size-1) {
+		if (index==size) {
 			add(element);
 		}else {
 			for (int i=0;i<index-1;i++) {
@@ -28,8 +28,8 @@ public class Single_Linked_list implements ILinkedList {
 			}
 			Nnew.next=position.next;
 			position.next=Nnew;
+			size++;
 		}
-		size++;
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class Single_Linked_list implements ILinkedList {
 	
 	public void print() { //this function for testing the code
 		Node temp=head;
-		for (int i=0;i<size;i++) {
+		while (temp!=null) {
 			System.out.println(temp.element);
 			temp=temp.next;
 		}

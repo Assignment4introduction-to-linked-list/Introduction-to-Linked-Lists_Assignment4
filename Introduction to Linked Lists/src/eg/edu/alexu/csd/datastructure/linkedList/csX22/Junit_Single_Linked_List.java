@@ -7,7 +7,7 @@ import org.junit.Test;
 public class Junit_Single_Linked_List {
 	@Test
 
-    void adding() {
+    public void adding() {
         Single_Linked_list testing = new Single_Linked_list();
         testing.add(1);
         testing.add(2);
@@ -41,19 +41,19 @@ public class Junit_Single_Linked_List {
         assertEquals(testing.get(3),"tree");
     }
     @Test
-    void subList() {
+    public void subList() {
         Single_Linked_list testing = new Single_Linked_list();
         int i;
         for (i=0;i<15;i++) {
         	testing.add(i);
         }
         Single_Linked_list testingSub = (Single_Linked_list) testing.sublist(3,7);
-        assertEquals(testingSub.size(),15);
+        assertEquals(testingSub.size(),5);
         assertFalse(testingSub.contains(30));
         assertEquals(testingSub.get(2),5);
     }
     @Test
-    void List_of_objects() {
+    public void List_of_objects() {
         Single_Linked_list testing = new Single_Linked_list();
         testing.add("Actualfr");
         testing.add(210);
@@ -62,6 +62,6 @@ public class Junit_Single_Linked_List {
         assertEquals(((String)(testing.get(0))).substring(6),"fr");
         assertEquals(((Integer) testing.get(1)).toString(),"210");
         assertEquals(((Integer) testing.get(2)).toString(),"492");
-        assertEquals(((Integer) testing.get(2)).toString(),"352");
+        //assertEquals(((Integer) testing.get(2)).toString(),"352");
     }
 }

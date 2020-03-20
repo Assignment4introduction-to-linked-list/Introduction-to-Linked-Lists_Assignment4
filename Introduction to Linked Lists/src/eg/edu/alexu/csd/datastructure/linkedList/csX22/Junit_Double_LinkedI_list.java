@@ -7,7 +7,7 @@ import org.junit.Test;
 public class Junit_Double_LinkedI_list {
 
 	 @Test
-	    void adding_and_logic() {
+	    public void adding_and_logic() {
 	    	Double_Linked_list  doubleTesting = new Double_Linked_list();
 	    	doubleTesting.add("1");
 	    	doubleTesting.add("2");
@@ -34,7 +34,7 @@ public class Junit_Double_LinkedI_list {
 	        assertTrue(doubleTesting.isEmpty());
 	    }	    	    
 	    @Test
-	    void deletingingTest() {
+	    public void deletingingTest() {
 	    	Double_Linked_list  doubleTesting = new Double_Linked_list();
 	    	int i;
 	    	for(i=0;i<50;i++) {
@@ -44,9 +44,10 @@ public class Junit_Double_LinkedI_list {
 		    assertTrue(doubleTesting.isEmpty());
 	    }	 
 	    @Test
-	    void subList() {
+	    public void subList() {
 	    	Double_Linked_list  doubleTesting = new Double_Linked_list();
 	    	Double_Linked_list  testingSub = new Double_Linked_list();
+	    	Double_Linked_list  testingSub1 = new Double_Linked_list(); 	
 	        int i;
 	        for (i=0;i<15;i++) {
 	        	doubleTesting.add(i);
@@ -54,7 +55,10 @@ public class Junit_Double_LinkedI_list {
 	        for(i=6;i<12;i++) {
 	        	testingSub.add(i);
 	        }
-	        assertEquals(doubleTesting.sublist(6,11),testingSub);
+	        testingSub1 = (Double_Linked_list) doubleTesting.sublist(6,11);
+	        for (i=0;i<testingSub1.size();i++) {
+	        	assertEquals(testingSub1.get(i),testingSub.get(i));
+	        }
 	        assertFalse(testingSub.contains(90));
 	        testingSub.clear();
 	        testingSub.add(400);
