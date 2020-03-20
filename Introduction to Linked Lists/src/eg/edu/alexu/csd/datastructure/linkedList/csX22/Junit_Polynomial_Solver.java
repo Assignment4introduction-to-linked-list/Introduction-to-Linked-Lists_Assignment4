@@ -8,7 +8,7 @@ public class Junit_Polynomial_Solver {
 
 
     @Test
-    void FirstAdditionTest() {
+    public void FirstAdditionTest() {
         PolynomialSolver polynomial = new PolynomialSolver();
         int[][] first = {{9, 11},{5,8}, {3,7},{2,4}};
         int[][] second = {{7,8},{6,2},{3,3},{1,0}};
@@ -21,7 +21,7 @@ public class Junit_Polynomial_Solver {
    
     
     @Test
-    void AdditionTestAgain() {
+    public void AdditionTestAgain() {
         PolynomialSolver polynomial = new PolynomialSolver();
         final int[][] first = {{7,3},{2,2},{5,1}};
         final int[][] second = {{8,5},{7,3},{8,0}};
@@ -34,47 +34,47 @@ public class Junit_Polynomial_Solver {
     
     
     @Test
-    void FirstSubtractTest() {
+    public void FirstSubtractTest() {
         PolynomialSolver polynomial = new PolynomialSolver();
         final int[][] first = {{1,5},{-1, 3},{0,7}};
         final int[][] second = {{1,5},{-1, 3},{0,7}};
         polynomial.setPolynomial('A',first);
         polynomial.setPolynomial('B',second);
         int[][] result = polynomial.subtract('A','B');
-        int[][] expected = {{0,5},{0, 3},{0,7}};
+        int[][] expected = {};
         assertArrayEquals(expected,result);
     }
 
     
     @Test
-    void SubtractTestAgain() {
+    public void SubtractTestAgain() {
         PolynomialSolver polynomial = new PolynomialSolver();
         final int[][] first = {{8,4},{6,3},{4,2},{1,0}};
         final int[][] second = {{7,4},{5,3},{2,1},{1,0}};
         polynomial.setPolynomial('A',first);
         polynomial.setPolynomial('B',second);
         int[][] result = polynomial.subtract('A', 'B');
-        int[][] expected = {{1,4},{2,3},{5,2},{-2,1},{0,0}};
+        int[][] expected = {{1,4},{1,3},{4,2},{-2,1}};
         assertArrayEquals(expected, result);
     }
    
     
     
     @Test
-    void FirstMultiplyTest() {
+    public void FirstMultiplyTest() {
         PolynomialSolver polynomial = new PolynomialSolver();
         int[][] first = {{-13,3}, {12,8}, {3,9}};
         int[][] second = {{10,0}};
         polynomial.setPolynomial('A',first);
         polynomial.setPolynomial('B',second);
         int[][] result = polynomial.multiply('A','B');
-        int[][] expected = {{-130,3},{120,8},{30,9}};
+        int[][] expected = {{30,9},{120,8},{-130,3}};
         assertArrayEquals(expected,result);
     }
     
     
     @Test
-    void MultiplyTestAgain() {
+    public void MultiplyTestAgain() {
         PolynomialSolver polynomial = new PolynomialSolver();
         final int[][] first = {{5,6},{4,4},{5,3},{2,1},{3,0}};
         final int[][] second = {{7,1}};
@@ -86,7 +86,7 @@ public class Junit_Polynomial_Solver {
     }
   
     @Test
-    void Evaluating_test() {
+    public void Evaluating_test() {
         PolynomialSolver polynomial = new PolynomialSolver();
         int[][] testing = {{7,2},{1,4},{3,7}};
         polynomial.setPolynomial('A',testing);
@@ -98,7 +98,7 @@ public class Junit_Polynomial_Solver {
     }
     
     @Test
-    void Evaluating_test2() {
+    public void Evaluating_test2() {
         PolynomialSolver polynomial = new PolynomialSolver();
         int[][] testing = {{7,4},{2,2},{8,6}};
         polynomial.setPolynomial('A',testing);
