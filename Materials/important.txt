@@ -1,0 +1,4 @@
+To run PolynomialSolver
+- You run the file by double-clicking at PolynomialSolver.bat file
+- .bat file have to be linked to the place where .jar file at
+- open .bat file as a txt and edit it
