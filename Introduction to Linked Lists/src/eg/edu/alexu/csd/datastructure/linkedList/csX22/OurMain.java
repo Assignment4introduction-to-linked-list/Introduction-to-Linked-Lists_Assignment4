@@ -13,12 +13,13 @@ public class OurMain {
     	l.add(20);
     	l.add(50);
     	l.add('b');
-    	l.add("ahmed");
-    	l.add(2,"car");
-    	l.remove(0);
-    	l.set(2, "khaled");
+    	//l.add("ahmed");
+    	l.add(3,"car");
+    	//l.remove(0);
+    	//l.set(2, "khaled");
     	l.print();
-    	Object x= l.get(3);
+    	System.out.println(l.get(3));
+    	/*Object x= l.get(3);
     	System.out.println("\n\n"+x);
     	System.out.println(l.contains(10));
     	//l.clear();
@@ -39,6 +40,6 @@ public class OurMain {
         System.out.println("Sub : "+poly.print('d'));
         poly.setPolynomial('m', poly.multiply('a', 'b'));
         System.out.println("Mul : "+poly.print('m'));
-        System.out.println("Value of 1st when x = 2.25 is "+poly.evaluatePolynomial('a', 2.25F));
+        System.out.println("Value of 1st when x = 2.25 is "+poly.evaluatePolynomial('a', 2.25F));*/
     }
 }
