@@ -50,19 +50,26 @@ public class UI_Application {
 								}
 							}
 						}
-						p.setPolynomial(Vname1,l.SpecialListToArr(l));
-						System.out.println("Polynomial "+Vname1+
-								" is set\n====================================================================");
+						if (l.isEmpty()) {
+							System.out.println("Polynomial ( "+Vname1+
+									" ) can't be set\nAs you entered an empty Polynomial terms\n====================================================================");
+						}
+						else {
+							p.setPolynomial(Vname1,l.SpecialListToArr(l));
+							System.out.println("Polynomial ( "+Vname1+
+									" ) is set\n====================================================================");
+						}
 						break;
 						}
 					case '2':{
 						System.out.println("Insert the variable name: A, B, C or R ");
 						Vname1 = s.next().charAt(0);
 						try {
-							System.out.println("Value in "+Vname1+" : "+p.print(Vname1)+
+							System.out.println("Value in ( "+Vname1+" ) : "+p.print(Vname1)+
 									"\n====================================================================");
 						}catch(Exception e) {
-							System.out.println("You must set polynmial "+ Vname1 +" before printing it !");
+							System.out.println("You must set polynmial ( "+ Vname1 +" ) before printing it !"
+									+"\n====================================================================");
 							completeError = true;
 						}
 						break;
@@ -73,10 +80,11 @@ public class UI_Application {
 						Vname2=s.next().charAt(0);
 						try {
 							p.setPolynomial('R',p.add(Vname1, Vname2));
-							System.out.println("the result of adding :"+p.print('R')+
+							System.out.println("the result of adding ( "+Vname1+" , "+Vname2+" ) : "+p.print('R')+
 									"\n====================================================================");
 						}catch(Exception e) {
-							System.out.println("You must set polynmials "+ Vname1+Vname2+" before adding them !");
+							System.out.println("You must set both polynmials ( "+ Vname1+" , "+Vname2+" ) before adding them !"
+									+"\n====================================================================");
 							completeError = true;
 						}
 						break;
@@ -88,10 +96,11 @@ public class UI_Application {
 						Vname2=s.next().charAt(0);
 						try {
 							p.setPolynomial('R',p.subtract(Vname1, Vname2));
-							System.out.println("the result of Subtracting :"+p.print('R')+
+							System.out.println("the result of Subtracting ( "+Vname1+" , "+Vname2+" : "+p.print('R')+
 									"\n====================================================================");
 						}catch(Exception e) {
-							System.out.println("You must set polynmials "+ Vname1+Vname2+" before Subtracting them !");
+							System.out.println("You must set both polynmials ( "+ Vname1+" , "+Vname2+" ) before Subtracting them !"
+									+ "\n====================================================================");
 							completeError = true;
 						}
 						break;
@@ -103,10 +112,11 @@ public class UI_Application {
 						Vname2=s.next().charAt(0);
 						try {
 							p.setPolynomial('R',p.multiply(Vname1, Vname2));
-							System.out.println("the result of Multiplying :"+p.print('R')+
+							System.out.println("the result of Multiplying ( "+Vname1+" , "+Vname2+" ) :"+p.print('R')+
 									"\n====================================================================");
 						}catch(Exception e) {
-							System.out.println("You must set polynmials "+ Vname1+Vname2+" before Multiplying them !");
+							System.out.println("You must set both polynmials ( "+ Vname1+" ),( "+Vname2+" ) before Multiplying them !"
+									+"\n====================================================================");
 							completeError = true;
 						}
 						break;
@@ -117,10 +127,11 @@ public class UI_Application {
 						System.out.println("Enter the Value you want to Evaluate Polynomial at it:");
 						float x = s.nextFloat();
 						try {
-							System.out.println("Value of "+Vname1+" when x = "+ x + " is : "+p.evaluatePolynomial(Vname1,x)+
+							System.out.println("Value of ( "+Vname1+" ) when x = "+ x + " is : "+p.evaluatePolynomial(Vname1,x)+
 					        		"\n====================================================================");
 						}catch(Exception e) {
-							System.out.println("You must set polynmial "+ Vname1 +" before evaluating it !");
+							System.out.println("You must set polynmial ( "+ Vname1 +" ) before evaluating it !"
+									+"\n====================================================================");
 							completeError = true;
 						}
 				        break;
@@ -132,7 +143,8 @@ public class UI_Application {
 							p.clearPolynomial(Vname1);
 							System.out.println("Done\n====================================================================");
 						}catch(Exception e) {
-							System.out.println("You must set polynmial "+ Vname1 +" before clearing it !");
+							System.out.println("You must set polynomial ( "+ Vname1 +" ) before clearing it !"
+									+"\n====================================================================");
 							completeError = true;
 						}
 						break;

@@ -155,13 +155,13 @@ public class Double_Linked_list implements ILinkedList{
 	}
 	
 	
-	public void print() { //this function for testing the code
+	/*public void print() { //this function for testing the code
 		Node temp=head;
 		while (temp!=null) {
 			System.out.println(temp.element);
 			temp=temp.next;
 		}
-	}
+	}*/
 
 	public Object[] listToArr(Double_Linked_list list) {
 		Object [] arr = new Object [list.size()];
