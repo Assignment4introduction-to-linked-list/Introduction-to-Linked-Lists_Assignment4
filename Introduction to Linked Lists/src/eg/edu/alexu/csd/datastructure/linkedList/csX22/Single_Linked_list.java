@@ -81,6 +81,8 @@ public class Single_Linked_list implements ILinkedList {
 		return size == 0;
 	}
 
+	//any throw Exception can be deleted and that doesn't affect in our application but we suppose using our classes in a general way
+	
 	@Override
 	public void remove(int index) {
 		if (isEmpty()) {
