@@ -1,7 +1,5 @@
 package eg.edu.alexu.csd.datastructure.linkedList.csX22;
 
-import java.util.Arrays;
-
 public class PolynomialSolver implements IPolynomialSolver{
         
     class Polyn{
@@ -79,6 +77,8 @@ public class PolynomialSolver implements IPolynomialSolver{
                     this.getValue(poly,i+1)[0]>0) 
                 equ.append('+');
         }
+        if(equ.length()==0)
+            return "0";
         return equ.toString();
     }
 
@@ -101,44 +101,39 @@ public class PolynomialSolver implements IPolynomialSolver{
     @Override
     public int[][] add(char poly1, char poly2) {
         
-        int [][] sumArr = new int[100][2];
+        Single_Linked_list sum = new Single_Linked_list();
         int p1 = this.getPolyIndex(poly1);
         int p2 = this.getPolyIndex(poly2);
-        int i=0, j=0, counter = 0;
+        int i=0, j=0;
 /////////////////////// adding two sorted polynomials ///////////////////////
         while(i<P[p1].equation.size() && j<P[p2].equation.size()){
             // if two terms have same exponent
             if(this.getValue(poly1,i)[1]==this.getValue(poly2,j)[1]){
-                if(this.getValue(poly1,i)[0]+this.getValue(poly2,j)[0]!=0){
-                    sumArr[counter][1] = this.getValue(poly1, i)[1];
-                    sumArr[counter++][0] = this.getValue(poly1,i)[0]+this.getValue(poly2,j)[0];
-                }
+                if(this.getValue(poly1,i)[0]+this.getValue(poly2,j)[0]!=0)
+                    sum.add(new int[]{this.getValue(poly1,i)[0]+this.getValue(poly2,j)[0],
+                    this.getValue(poly1, i)[1]});
                 i++; j++;
             }
             // if one is greater than another
-            else if(this.getValue(poly1,i)[1]>this.getValue(poly2,j)[1]){
-                sumArr[counter][1] = this.getValue(poly1, i)[1];
-                sumArr[counter++][0] = this.getValue(poly1, i++)[0];
-            }
-            else{
-                sumArr[counter][1] = this.getValue(poly2, j)[1];
-                sumArr[counter++][0] = this.getValue(poly2, j++)[0];
-            }
+            else if(this.getValue(poly1,i)[1]>this.getValue(poly2,j)[1])
+                sum.add(new int[]{this.getValue(poly1, i)[0],this.getValue(poly1, i++)[1]});
+            else
+                sum.add(new int[]{this.getValue(poly2, j)[0],this.getValue(poly2, j++)[1]});
         }
         // adding the remaining elements to the array 
         while(i<P[p1].equation.size()){
-            sumArr[counter][1] = this.getValue(poly1, i)[1];
-            sumArr[counter++][0] = this.getValue(poly1, i++)[0];
+            sum.add(new int[]{this.getValue(poly1, i)[0],this.getValue(poly1, i++)[1]});
         }
         while(j<P[p2].equation.size()){
-            sumArr[counter][1] = this.getValue(poly2, j)[1];
-            sumArr[counter++][0] = this.getValue(poly2, j++)[0];
+            sum.add(new int[]{this.getValue(poly2, j)[0],this.getValue(poly2, j++)[1]});
         }
-        return Arrays.copyOfRange(sumArr,0,counter);
+        return (int[][])sum.listToArr(true);
     }
 
     @Override
     public int[][] subtract(char poly1, char poly2) {
+        if(poly1==poly2)
+            return new int[][]{{0,0}};
         int cur = this.getPolyIndex(poly2);
         // make second polynomial negative itself
         for(int i=0; i<P[cur].equation.size(); i++){
@@ -155,28 +150,23 @@ public class PolynomialSolver implements IPolynomialSolver{
 
     @Override
     public int[][] multiply(char poly1, char poly2) {
-        int [][] mulArr = new int[1000][2];
+        Single_Linked_list multiply = new Single_Linked_list();
         int p1 = this.getPolyIndex(poly1);
         int p2 = this.getPolyIndex(poly2);
-        int counter=0;
         // multiply
         for(int i=0; i<P[p1].equation.size(); i++)
             for(int j=0; j<P[p2].equation.size(); j++){
-                mulArr[counter][0] = this.getValue(poly1,i)[0]*this.getValue(poly2,j)[0];
-                mulArr[counter++][1] = this.getValue(poly1,i)[1]+this.getValue(poly2,j)[1];
+                multiply.add(new int[]{this.getValue(poly1,i)[0]*this.getValue(poly2,j)[0],
+                this.getValue(poly1,i)[1]+this.getValue(poly2,j)[1]});
             }
-        // make a polynomail of the multiplication array to sort and remove elements with zero coefficient
-        this.setPolynomial('t', mulArr);
+        /* throw the multiplcation list to function setPolynomial becouse
+        - setPolymial function add terms with same exponent
+        - remove terms with zero coefficient */
+        this.setPolynomial('t', (int[][])multiply.listToArr(true));
         int mulPoly = this.getPolyIndex('t');
-        int[][] fmulArr = new int [1000][2];
-        int cou = 0;
-        // make the polynomial array again to return it as the final resault
-        for(int i=0; i<P[mulPoly].equation.size(); i++){
-            fmulArr[cou][0] = this.getValue('t', i)[0];
-            fmulArr[cou++][1] = this.getValue('t', i)[1];
-        }
+        int[][] mularray = (int[][])P[mulPoly].equation.listToArr(true);
         this.clearPolynomial('t');
-        return fmulArr;
+        return mularray;
     }
     private int getPolyIndex(char poly)
     {
@@ -198,7 +188,7 @@ public class PolynomialSolver implements IPolynomialSolver{
     }
     private boolean isExist(char poly){
         for (Polyn P1 : P)
-            if (P1.name == poly)
+            if (P1 != null && P1.name == poly)
                 return true;
         return false;
     }
