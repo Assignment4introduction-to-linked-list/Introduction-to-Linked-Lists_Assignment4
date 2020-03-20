@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class Junit_Polynomial_Solver {
 
-// error in set test 
+
     @Test
     void FirstAdditionTest() {
         PolynomialSolver polynomial = new PolynomialSolver();
