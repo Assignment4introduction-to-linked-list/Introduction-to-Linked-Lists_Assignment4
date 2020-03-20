@@ -1,6 +1,11 @@
+
+any throw Exception can be deleted and that doesn't affect in our application as we handled All cases
+but we suppose using our classes in a general way
+
+
 The contributors :-
 ------------------
 
 Mohamed Metwalli Noureldin 18011587
-Ahmed Abdallah 
 Ahmed Youssef Ahmed 18010280      
+Ahmed Abdallah Ahmed Eliwa 18010163
